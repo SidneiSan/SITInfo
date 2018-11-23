@@ -1,0 +1,46 @@
+﻿<header class="main-header">
+    @* BEGIN Logo *@
+    <a href="@Url.Action("Index", "Home")" class="logo">
+        @* Mini logo for sidebar 50x50 pixels *@
+        <span class="logo-mini"><b>S</b>TI</span>
+        @* Logo for regular state and mobile devices *@
+        <span class="logo-lg"><b>STI</b>App</span>
+    </a>
+    @* END Logo *@
+    @* BEGIN Header *@
+    <nav class="navbar navbar-static-top" role="navigation">
+        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
+        <div class="navbar-custom-menu">
+            <ul class="nav navbar-nav">
+                @* BEGIN Messages *@
+                <li class="dropdown messages-menu">
+                </li>
+                @* END Messages *@
+                @* BEGIN Notifications *@
+                <li class="dropdown notifications-menu">
+                </li>
+                @* END Notifications *@
+                @* BEGIN Tasks *@
+                <li class="dropdown tasks-menu">
+                </li>
+                @* END Tasks *@
+                @* BEGIN User Account Menu *@
+                <li class="dropdown user user-menu">
+                    
+                        @Html.ActionLink("LogOff", "")
+                    
+                </li>
+
+                @* END User Account Menu *@
+                @* BEGIN Control Sidebar Toggle Button *@
+                <li>
+                </li>
+                @* END Control Sidebar Toggle Button *@
+            </ul>
+        </div>
+    </nav>
+</header>
+
+
