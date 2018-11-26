@@ -28,19 +28,29 @@
                 @* END Tasks *@
                 @* BEGIN User Account Menu *@
                 <li class="dropdown user user-menu">
-                    
-                        @Html.ActionLink("LogOff", "")
-                    
+                    @if (Session["NomeUsuario"] != null)
+                    {
+                        <img src="~/Content/img/user.jpg" class="user-image" alt="User Image">
+                        <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                        <span>
+                            @Session["EmailUsuario"].ToString()
+                            <strong>@Html.ActionLink("Logoff", "/Login", new object { }, new { @class = "text-danger" })</strong>
+                        </span>
+                        
+
+
+
+                    }
                 </li>
 
-                @* END User Account Menu *@
-                @* BEGIN Control Sidebar Toggle Button *@
-                <li>
-                </li>
-                @* END Control Sidebar Toggle Button *@
-            </ul>
-        </div>
-    </nav>
-</header>
+                    @* END User Account Menu *@
+                    @* BEGIN Control Sidebar Toggle Button *@
+                    <li>
+                    </li>
+                    @* END Control Sidebar Toggle Button *@
+                </ul>
+            </div>
+        </nav>
+    </header>
 
 

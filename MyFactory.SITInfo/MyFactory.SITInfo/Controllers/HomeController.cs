@@ -1,5 +1,6 @@
 ﻿using MyFactory.SITInfo.DbContexto;
 using MyFactory.SITInfo.Models;
+using MyFactory.SITInfo.Models.Permissoes;
 using MyFactory.SITInfo.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -9,10 +10,13 @@ using System.Web.Mvc;
 
 namespace MyFactory.SITInfo.Controllers
 {
+    
     public class HomeController : Controller
     {
+        
         private SITDbContext db = new SITDbContext();
 
+        
         public ActionResult Index()
         {
             return View();
@@ -24,13 +28,22 @@ namespace MyFactory.SITInfo.Controllers
 
             return View();
         }
-        public ActionResult Login()
+
+        
+        /// <param name="returnURL"></param>
+        /// <returns></returns>
+        public ActionResult Login(string returnURL)
         {
+            /*Recebe a url que o usuário tentou acessar*/
+            ViewBag.ReturnUrl = returnURL;
             return View();
         }
 
+        /// <param name="login"></param>
+        /// <param name="returnUrl"></param>
+        /// <returns></returns>
         [HttpPost]
-        public ActionResult ValidaUser([Bind(Include = "Email, Senha")] UsuarioViewModel model)
+        public ActionResult ValidaUser([Bind(Include = "Email, Senha")] UsuarioViewModel model, string returnUrl)
         {
             if (!ModelState.IsValidField(model.Email) && !ModelState.IsValidField(model.Senha))
             {
@@ -41,9 +54,16 @@ namespace MyFactory.SITInfo.Controllers
             Usuario usuario = db.Usuarios.FirstOrDefault(u => u.Email == model.Email && u.Senha == model.Senha);
             if (usuario == null)
             {
-                ModelState.AddModelError("erro_login", "Usuário não foi localizado!");
+                ModelState.AddModelError("erro_login", "Usuário não foi localizado! ou Senha incorreta!");
                 return View("Login",model);
             }
+
+          
+            Session["EmailUsuario"] = usuario.Email;
+            Session["NomeUsuario"] = usuario.Nome;
+            
+
+
 
 
             Console.WriteLine("vazio");
@@ -54,7 +74,10 @@ namespace MyFactory.SITInfo.Controllers
 
         }
 
-
+        public ActionResult Negado()
+        {
+            return View();
+        }
 
 
         public ActionResult Contact()

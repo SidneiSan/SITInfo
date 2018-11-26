@@ -6,123 +6,112 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using System.Web.Security;
 using MyFactory.SITInfo.DbContexto;
 using MyFactory.SITInfo.Models;
-using MyFactory.SITInfo.Models.Permissoes;
-using MyFactory.SITInfo.Models.ViewModels;
 
 namespace MyFactory.SITInfo.Controllers
 {
-    public class UsuariosController : Controller
+    public class ChamadosController : Controller
     {
         private SITDbContext db = new SITDbContext();
 
-
-        // GET: Usuarios
+        // GET: Chamados
         public ActionResult Index()
         {
-            
-            return View(db.Usuarios.ToList());
+            return View(db.Chamados.ToList());
         }
 
-
-        // GET: Usuarios/Details/5
+        // GET: Chamados/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
+            Chamado chamado = db.Chamados.Find(id);
+            if (chamado == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(chamado);
         }
 
-
-        // GET: Usuarios/Create
+        // GET: Chamados/Create
         public ActionResult Create()
         {
             return View();
         }
-        
-        // POST: Usuarios/Create
+
+        // POST: Chamados/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,Nome,Email,Senha,Ativo,TipoConta")] Usuario usuario)
+        public ActionResult Create([Bind(Include = "id,EmailUsuario,DataAbertura,Prioridade,Titulo,Descricao,DataFechamento")] Chamado chamado)
         {
             if (ModelState.IsValid)
             {
-                db.Usuarios.Add(usuario);
+                db.Chamados.Add(chamado);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(usuario);
+            return View(chamado);
         }
 
-
-        // GET: Usuarios/Edit/5
+        // GET: Chamados/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
+            Chamado chamado = db.Chamados.Find(id);
+            if (chamado == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(chamado);
         }
 
-
-        // POST: Usuarios/Edit/5
+        // POST: Chamados/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,Nome,Email,Senha,Ativo,TipoConta")] Usuario usuario)
+        public ActionResult Edit([Bind(Include = "id,EmailUsuario,DataAbertura,Prioridade,Titulo,Descricao,DataFechamento")] Chamado chamado)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(usuario).State = EntityState.Modified;
+                db.Entry(chamado).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(usuario);
+            return View(chamado);
         }
 
-
-        // GET: Usuarios/Delete/5
+        // GET: Chamados/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usuario usuario = db.Usuarios.Find(id);
-            if (usuario == null)
+            Chamado chamado = db.Chamados.Find(id);
+            if (chamado == null)
             {
                 return HttpNotFound();
             }
-            return View(usuario);
+            return View(chamado);
         }
 
-
-        // POST: Usuarios/Delete/5
+        // POST: Chamados/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Usuario usuario = db.Usuarios.Find(id);
-            db.Usuarios.Remove(usuario);
+            Chamado chamado = db.Chamados.Find(id);
+            db.Chamados.Remove(chamado);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -16,6 +16,7 @@ namespace MyFactory.SITInfo.DbContexto
         }
 
         public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Chamado> Chamados { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

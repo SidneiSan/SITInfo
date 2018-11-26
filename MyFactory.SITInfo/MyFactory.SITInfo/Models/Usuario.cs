@@ -21,6 +21,12 @@ namespace MyFactory.SITInfo.Models
     {
         Admin = 1,
         Usuario = 2
+    }
 
+
+    public enum EAtivo
+    {
+        Ativo = 1,
+        Inativo = 0
     }
 }

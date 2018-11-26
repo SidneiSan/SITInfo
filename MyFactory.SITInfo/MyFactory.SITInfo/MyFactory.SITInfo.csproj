@@ -160,13 +160,21 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\ChamadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="DbContexto\STIDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201811260102288_chamados.cs" />
+    <Compile Include="Migrations\201811260102288_chamados.Designer.cs">
+      <DependentUpon>201811260102288_chamados.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Chamado.cs" />
+    <Compile Include="Models\Permissoes\Permissoes.cs" />
+    <Compile Include="Models\Permissoes\Roles.cs" />
     <Compile Include="Models\Usuario.cs" />
     <Compile Include="Models\ViewModels\UsuarioViewModel.cs" />
     <Compile Include="Models\Watson\ConversationHelper.cs" />
@@ -342,6 +350,12 @@
     <Content Include="Views\Usuarios\Details.cshtml" />
     <Content Include="Views\Usuarios\Edit.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Home\Negado.cshtml" />
+    <Content Include="Views\Chamados\Create.cshtml" />
+    <Content Include="Views\Chamados\Delete.cshtml" />
+    <Content Include="Views\Chamados\Details.cshtml" />
+    <Content Include="Views\Chamados\Edit.cshtml" />
+    <Content Include="Views\Chamados\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -362,6 +376,11 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201811260102288_chamados.resx">
+      <DependentUpon>201811260102288_chamados.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
