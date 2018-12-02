@@ -27,30 +27,38 @@
                 </li>
                 @* END Tasks *@
                 @* BEGIN User Account Menu *@
-                <li class="dropdown user user-menu">
-                    @if (Session["NomeUsuario"] != null)
-                    {
-                        <img src="~/Content/img/user.jpg" class="user-image" alt="User Image">
+                <li class="">
+                    <!-- Menu Toggle Button -->
+                    <a href="#" class="">
+                        <!-- The user image in the navbar-->
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span>
-                            @Session["EmailUsuario"].ToString()
-                            <strong>@Html.ActionLink("Logoff", "/Login", new object { }, new { @class = "text-danger" })</strong>
-                        </span>
-                        
-
-
-
-                    }
+                        @if (Session["NomeUsuario"].ToString() != "")
+                        {
+                            <img src="~/Content/img/user.jpg" class="user-image" alt="User Image">
+                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                            <span>
+                                @Session["EmailUsuario"].ToString()
+                                <strong>@Html.ActionLink("Logoff", "/Login", new object { }, new { @class = "text-danger" })</strong>
+                            </span>
+                        }
+                        else
+                        {
+                            <span>
+                                <img src="~/Content/img/user.jpg" class="user-image" alt="User Image">
+                                user.com
+                            </span>
+                        }
+                    </a>
                 </li>
 
-                    @* END User Account Menu *@
-                    @* BEGIN Control Sidebar Toggle Button *@
-                    <li>
-                    </li>
-                    @* END Control Sidebar Toggle Button *@
-                </ul>
-            </div>
-        </nav>
-    </header>
+                @* END User Account Menu *@
+                @* BEGIN Control Sidebar Toggle Button *@
+                <li>
+                </li>
+                @* END Control Sidebar Toggle Button *@
+            </ul>
+        </div>
+    </nav>
+</header>
 
 

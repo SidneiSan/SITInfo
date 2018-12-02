@@ -58,7 +58,7 @@ desired effect
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <ul class="dropdown-menu">
-                            <li class="header">You have 4 messages</li>
+                            <li class=""</li>
                             <li>
                                 <!-- inner menu: contains the messages -->
                                 <ul class="menu">
@@ -91,9 +91,23 @@ desired effect
                             <!-- Menu Toggle Button -->
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
-                                <img src="~/Content/img/user.jpg" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span>user.com</span>
+                                @if (Session["NomeUsuario"].ToString() != "")
+                                {
+                                    <img src="~/Content/img/user.jpg" class="user-image" alt="User Image">
+                                    <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                    <span>
+                                        @Session["EmailUsuario"].ToString()
+                                        <strong>@Html.ActionLink("Logoff", "/Login", new object { }, new { @class = "text-danger" })</strong>
+                                    </span>
+                                }
+                                else
+                                {
+                                    <span>
+                                        <img src="~/Content/img/user.jpg" class="user-image" alt="User Image">
+                                        user.com
+                                    </span>
+                                }
                             </a>
                         </li>
                         <!-- Control Sidebar Toggle Button -->
@@ -159,5 +173,7 @@ desired effect
     <!-- Optionally, you can add Slimscroll and FastClick plugins.
          Both of these plugins are recommended to enhance the
          user experience. -->
+
+    
 </body>
 </html>

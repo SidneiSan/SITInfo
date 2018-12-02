@@ -2,15 +2,15 @@
     var controller = HttpContext.Current.Request.RequestContext.RouteData.Values["Action"].ToString();
     string layout = "";
 
-    //if (controller == "Login")
-    //{
-    //    layout = "~/Views/Shared/_Logon.cshtml";
-    //}
-    //else
-    //{
-    //    layout = "~/Views/Shared/_Layout.cshtml";
-    //}
+    if (controller == "Login")
+    {
+        layout = "~/Views/Shared/_Logon.cshtml";
+    }
+    else
+    {
+        layout = "~/Views/Shared/_Layout.cshtml";
+    }
 
-    //Layout = layout;
-    Layout =  "~/Views/Shared/_Logon.cshtml";
+    Layout = layout;
+    //Layout =  "~/Views/Shared/_Logon2.cshtml";
 }

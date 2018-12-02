@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
+@Styles.Render("~/Bundles/css")
+
+<body>
+
+    <h2>Chat Messages</h2>
+
+    <div class="container">
+        <img src="~/Content/img/robot.jpg" t="Avatar" style="width:40%;">
+        <p>Ola! como eu posso te ajudar?</p>
+        <span class="time-right">11:00</span>
+    </div>
+
+    <div>
+        <textarea id="texto" class="textEva"></textarea>
+    </div>
+    <button id="botaoclick" type="button" class="btn btn-default" aria-label="Left Align">Enviar</button>
+
+    <div id="container" class="container">
+    </div>
+
+
+    <script>
+        $(document).ready(function () {
+            $("#container").hide();
+        });
+
+        $("#botaoclick").click(function () {
+            var textorecuperado = document.getElementById("texto").value;
+            if (textorecuperado == "") {
+                alert("Ops! falta sua mensasgem...");
+
+            } else {
+                addChild(textorecuperado);
+            }
+        });
+
+        function addChild(textorecuperado) {
+            $("#container").show();
+            var parent = document.getElementById('container');
+            var newChild = ' ' +
+                '<img src="~/Content/img/user.jpg" alt="Avatar" style="width:100%;">' +
+                '<p>' + textorecuperado + '</p> ' +
+                '<span class="time-left">11:05</span><br>';
+            parent.insertAdjacentHTML('beforeend', newChild);
+
+        }
+    </script>
+
+</body>
+
+
+@Scripts.Render("~/Bundles/js")

@@ -161,6 +161,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ChamadosController.cs" />
+    <Compile Include="Controllers\ChatBotController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="DbContexto\STIDbContext.cs" />
@@ -191,6 +192,7 @@
     <Content Include="Content\css\bootstrap-select.css" />
     <Content Include="Content\css\bootstrap-select.min.css" />
     <Content Include="Content\css\bootstrap.min.css" />
+    <Content Include="Content\css\ChatBot.css" />
     <Content Include="Content\css\font-awesome.min.css" />
     <Content Include="Content\css\ickeck\aero.css" />
     <Content Include="Content\css\ickeck\aero.min.css" />
@@ -240,8 +242,10 @@
     <Content Include="Content\css\skins\_all-skins.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\img\robot.png" />
     <Content Include="Content\img\user.jpg" />
     <Content Include="Content\js\adminlte.js" />
+    <Content Include="Content\js\ChatBot.js" />
     <Content Include="Content\js\init.js" />
     <Content Include="Content\js\plugins\bootstrap-select\bootstrap-select.js" />
     <Content Include="Content\js\plugins\bootstrap-select\bootstrap-select.min.js" />
@@ -356,6 +360,7 @@
     <Content Include="Views\Chamados\Details.cshtml" />
     <Content Include="Views\Chamados\Edit.cshtml" />
     <Content Include="Views\Chamados\Index.cshtml" />
+    <Content Include="Views\ChatBot\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
