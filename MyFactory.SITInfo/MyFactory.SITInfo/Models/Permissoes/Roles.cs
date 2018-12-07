@@ -20,7 +20,6 @@ namespace MyFactory.SITInfo.Models.Permissoes
             SITDbContext db = new SITDbContext();
             Usuario usuario = db.Usuarios.FirstOrDefault(u => u.Email == username);
             string[] retorno = {usuario.TipoConta.ToString() };
-            Console.WriteLine("**********Retorno=====>>>>>" + retorno);
             return retorno;
             throw new NotImplementedException();
         }

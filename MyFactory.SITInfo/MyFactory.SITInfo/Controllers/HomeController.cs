@@ -35,8 +35,7 @@ namespace MyFactory.SITInfo.Controllers
         public ActionResult Login(string returnURL)
         {
             /*Recebe a url que o usuário tentou acessar*/
-            Session["EmailUsuario"] ="";
-            Session["NomeUsuario"] = "";
+            Session["usuariologado"] ="";
             ViewBag.ReturnUrl = returnURL;
             return View();
         }
@@ -61,9 +60,8 @@ namespace MyFactory.SITInfo.Controllers
             }
 
           
-            Session["EmailUsuario"] = usuario.Email;
-            Session["NomeUsuario"] = usuario.Nome;
-            
+            Session["usuariologado"] = usuario.Email;
+           
 
             return  RedirectToAction("Index","Home");
 

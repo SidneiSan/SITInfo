@@ -16,7 +16,10 @@ namespace MyFactory.SITInfo
                 .Include("~/Content/css/font-awesome.min.css")
                 .Include("~/Content/css/icheck/blue.min.css")
                 .Include("~/Content/css/AdminLTE.css")
-                .Include("~/Content/css/skins/skin-blue.css"));
+                .Include("~/Content/css/skins/skin-blue.css")
+                
+                );
+
 
             bundles.Add(new ScriptBundle("~/Bundles/js")
                 .Include("~/Content/js/plugins/jquery/jquery-2.2.4.js")

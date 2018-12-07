@@ -1,6 +1,10 @@
 ﻿@model MyFactory.SITInfo.Models.ViewModels.UsuarioViewModel
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Logon.cshtml";
+}
 
-
+<!-- /.login-logo -->
 @using (Html.BeginForm("ValidaUser", "Home", FormMethod.Post))
 {
     <div id="rodape-fora">
@@ -31,13 +35,11 @@
             </div>
             <div class="row">
                 <div class=" col-md-5 col-sm-5 col-lg-5">
-                   
+
                 </div>
             </div>
 
         </section>
     </div>
 }
-
-
-
+<!-- /.login-box-body -->

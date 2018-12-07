@@ -1,61 +1,205 @@
-﻿
-@{
-    ViewBag.Title = "Index";
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-@*<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-    <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>*@
-@Styles.Render("~/Bundles/css")
+<style>
+    .robodiv {
+        margin: 0 auto;
+        max-width: 0 auto;
+        padding: 0 auto;
+        height: auto;
+       }
 
-<body>
+    .container {
+        border: 2px solid #dedede;
+        background-color: #f1f1f1;
+        width: 95%;
+        height: 70px;
+        border-radius: 5px;
+        padding: 10px;
+        margin: 10px 0;
+    }
 
-    <h2>Chat Messages</h2>
+    .darker {
+        border-color: #ccc;
+        background-color: #ddd;
+    }
 
-    <div class="container">
-        <img src="~/Content/img/robot.jpg" t="Avatar" style="width:40%;">
-        <p>Ola! como eu posso te ajudar?</p>
-        <span class="time-right">11:00</span>
-    </div>
+    .container::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
 
-    <div>
-        <textarea id="texto" class="textEva"></textarea>
-    </div>
-    <button id="botaoclick" type="button" class="btn btn-default" aria-label="Left Align">Enviar</button>
+    .container img {
+        float: left;
+        max-width: 80px;
+        width: 7%;
+        margin-right: 20px;
+        border-radius: 50%;
+    }
 
-    <div id="container" class="container">
-    </div>
-
-
-    <script>
-        $(document).ready(function () {
-            $("#container").hide();
-        });
-
-        $("#botaoclick").click(function () {
-            var textorecuperado = document.getElementById("texto").value;
-            if (textorecuperado == "") {
-                alert("Ops! falta sua mensasgem...");
-
-            } else {
-                addChild(textorecuperado);
-            }
-        });
-
-        function addChild(textorecuperado) {
-            $("#container").show();
-            var parent = document.getElementById('container');
-            var newChild = ' ' +
-                '<img src="~/Content/img/user.jpg" alt="Avatar" style="width:100%;">' +
-                '<p>' + textorecuperado + '</p> ' +
-                '<span class="time-left">11:05</span><br>';
-            parent.insertAdjacentHTML('beforeend', newChild);
-
+        .container img.right {
+            float: right;
+            margin-left: 20px;
+            margin-right: 0;
         }
-    </script>
 
-</body>
+    .time-right {
+        float: right;
+        color: #aaa;
+    }
+
+    .time-left {
+        float: left;
+        color: #999;
+    }
+
+    textarea {
+        background: #fbfbfb;
+        width: 50%;
+        height: 70px;
+        border: 2px solid #eee;
+        resize: none;
+        padding: 10px;
+        font-size: 18px;
+        color: #333;
+    }
+
+    .btn-primary {
+        height: 10%;
+        width: 5%;
+        position: absolute;
+        right: 50%px;
+    }
+
+    .descriptionarea {
+        min-width: 490px;
+        position: relative;
+        display: inline-block;
+    }
+
+    ::-webkit-scrollbar-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
+        background-color: transparent;
+    }
+
+    ::-webkit-scrollbar {
+        width: 16px;
+        background-color: transparent;
+    }
+</style>
+<h2>Chatis Botis</h2>
+
+<div>
+    <textarea id="texto" class="textEva" placeholder="Digite sua mensagem"></textarea>
+    <button id="botaoclick" type="button" class="btn btn-primary" aria-label="Left Align">Enviar</button>
+</div>
+
+<div class="robodiv">
+
+    <div id="datadiv" style="width: 56%; height: 400px; overflow-y: scroll;">
+        <div class="container">
+            <img src="~/Content/img/robot.png" alt="Avatar" style="width:7%;">
+            <p>Faça a sua Pergunta!</p>
+            <span class="time-right"></span>
+        </div>
+        <p id=paragrafo class=paragrafo></p>
+    </div>
+
+</div>
 
 
-@Scripts.Render("~/Bundles/js")
+<script src="/Content/js/plugins/jquery/jquery-2.2.4.js"></script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function () {
+        $("#container").hide();
+    });
+
+
+    $("#botaoclick").click(function()
+{
+   var pergunta = $("#texto").val();
+        if (pergunta == "") {
+            alert("Ops! falta sua mensasgem...");
+        } else {
+            addChildUser(pergunta);
+        }
+        //console.log("pergunta->" + pergunta);
+   $.ajax({
+       type: "POST",
+       url: '@Url.Action("FalaWatson")',
+       data: {pergunta: pergunta },
+       success: function (resposta) {
+           //console.log("resposta->" + resposta);
+
+           addChildRobo(resposta);
+           auto_scrool();
+           $("#texto").val('');
+       },
+       error: function (result) {
+       }
+            });
+        });
+
+
+
+    //$("#botaoclick").click(function () {
+    //    var textorecuperado = document.getElementById("texto").value;
+    //    if (textorecuperado == "") {
+    //        alert("Ops! falta sua mensasgem...");
+
+    //    } else {
+    //        addChild(textorecuperado);
+    //        auto_scrool();
+    //    }
+    //});
+
+    function auto_scrool() {
+        var elem = document.getElementById('datadiv');
+        elem.scrollTop = elem.scrollHeight;
+    };
+    
+
+    function addChildRobo(resposta) {
+        $("#container").show();
+        var parent = document.getElementById('paragrafo');
+        var newChild = '<div id="container" class="container"> ' +
+            '<img src="../Content/img/robot.png" alt="Avatar" style="width:100% class="left";">' + 
+            '<p align="left">' + resposta + '</p> ' +
+            '<span class="time-right">' + atualizaRelogio() + '</span></div>';
+        parent.insertAdjacentHTML('beforeend', newChild);
+    };
+
+    function addChildUser(pergunta) {
+        $("#container").show();
+        var parent = document.getElementById('paragrafo');
+        var newChild = '<div id="container" class="container"> ' +
+            '<img src="../Content/img/user.jpg" alt="Avatar" style="width:100%" class="right";>' +
+            '<p align="right">' + pergunta + '</p> ' +
+            '<span class="time-left">' + atualizaRelogio() + '</span></div>';
+        parent.insertAdjacentHTML('beforeend', newChild);
+    };
+
+
+    function atualizaRelogio() {
+        var momentoAtual = new Date();
+
+        var vhora = momentoAtual.getHours();
+        var vminuto = momentoAtual.getMinutes();
+
+        if (vhora < 10) { vhora = "0" + vhora; }
+        if (vminuto < 10) { vminuto = "0" + vminuto; }
+
+        horaFormat = vhora + " : " + vminuto
+
+        //document.getElementById("data").innerHTML = dataFormat;
+        //document.getElementById("hora").innerHTML = horaFormat;
+
+        //setTimeout("atualizaRelogio()",1000);
+
+        return horaFormat;
+    }
+</script>
+
+

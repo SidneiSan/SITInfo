@@ -92,13 +92,13 @@ desired effect
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- The user image in the navbar-->
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                @if (Session["NomeUsuario"].ToString() != "")
+                                @if (Session["usuariologado"] != null)
                                 {
                                     <img src="~/Content/img/user.jpg" class="user-image" alt="User Image">
                                     <!-- hidden-xs hides the username on small devices so only the image appears. -->
                                     <span>
-                                        @Session["EmailUsuario"].ToString()
-                                        <strong>@Html.ActionLink("Logoff", "/Login", new object { }, new { @class = "text-danger" })</strong>
+                                        @Session["usuariologado"].ToString()
+                                        <strong>@Html.ActionLink("Logoff", "Login", "Home", new object { }, new { @class = "text-danger" })</strong>
                                     </span>
                                 }
                                 else

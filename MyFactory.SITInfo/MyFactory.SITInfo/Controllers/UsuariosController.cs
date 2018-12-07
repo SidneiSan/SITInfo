@@ -14,6 +14,7 @@ using MyFactory.SITInfo.Models.ViewModels;
 
 namespace MyFactory.SITInfo.Controllers
 {
+    [AutorizacaoFilter]
     public class UsuariosController : Controller
     {
         private SITDbContext db = new SITDbContext();
@@ -28,6 +29,7 @@ namespace MyFactory.SITInfo.Controllers
 
 
         // GET: Usuarios/Details/5
+        
         public ActionResult Details(int? id)
         {
             if (id == null)

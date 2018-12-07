@@ -3,23 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Filters;
 
 namespace MyFactory.SITInfo.Models.Permissoes
 {
     [AttributeUsage(AttributeTargets.Method | AttributeTargets.Class, Inherited = true, AllowMultiple = true)]
-    public class Permissoes : AuthorizeAttribute
+    public class AutorizacaoFilter : ActionFilterAttribute
     {
-        public Permissoes()
+        //Antes de executar o controller
+        public override void OnActionExecuting(ActionExecutingContext filterContext)
         {
-        }
-
-        public override void OnAuthorization(AuthorizationContext filterContext)
-        {
-            base.OnAuthorization(filterContext);
-
-            if (filterContext.Result is HttpUnauthorizedResult)
+            object usuarioLogado = filterContext.HttpContext.Session["usuarioLogado"];
+            if (usuarioLogado == null || usuarioLogado == "")
             {
-                filterContext.HttpContext.Response.Redirect("/Home/Negado");
+                if (filterContext.Controller is MyFactory.SITInfo.Controllers.HomeController)
+                {
+                    //Nao faz nada
+                }
+                else
+                {
+                    //filterContext.Result = new RedirectToRouteResult(
+                    //            new RouteValueDictionary(
+                    //               new { action = "Erro", controller = "Login" }));
+                    filterContext.HttpContext.Response.Redirect("/Home/Negado");
+                }
             }
         }
     }

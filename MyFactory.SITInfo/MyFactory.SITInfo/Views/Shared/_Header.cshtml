@@ -5,60 +5,37 @@
         <span class="logo-mini"><b>S</b>TI</span>
         @* Logo for regular state and mobile devices *@
         <span class="logo-lg"><b>STI</b>App</span>
-    </a>
-    @* END Logo *@
-    @* BEGIN Header *@
-    <nav class="navbar navbar-static-top" role="navigation">
-        <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
-            <span class="sr-only">Toggle navigation</span>
-        </a>
-        <div class="navbar-custom-menu">
-            <ul class="nav navbar-nav">
-                @* BEGIN Messages *@
-                <li class="dropdown messages-menu">
-                </li>
-                @* END Messages *@
-                @* BEGIN Notifications *@
-                <li class="dropdown notifications-menu">
-                </li>
-                @* END Notifications *@
-                @* BEGIN Tasks *@
-                <li class="dropdown tasks-menu">
-                </li>
-                @* END Tasks *@
-                @* BEGIN User Account Menu *@
-                <li class="">
-                    <!-- Menu Toggle Button -->
-                    <a href="#" class="">
+        <nav class="navbar navbar-static-top" role="navigation">
+            <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+                <span class="sr-only">Toggle navigation</span>
+            </a>
+            <div class="navbar-custom-menu">
+                <ul class="nav navbar-nav">
+                    <li class="">
+                        <!-- Menu Toggle Button -->
                         <!-- The user image in the navbar-->
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        @if (Session["NomeUsuario"].ToString() != "")
+                        
+                        @if (Session["usuariologado"] != null)
                         {
-                            <img src="~/Content/img/user.jpg" class="user-image" alt="User Image">
-                            <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span>
-                                @Session["EmailUsuario"].ToString()
-                                <strong>@Html.ActionLink("Logoff", "/Login", new object { }, new { @class = "text-danger" })</strong>
+                                <img id="foto-user" src="~/Content/img/user.jpg" class="user-image" alt="User Image">
+                                <!-- hidden-xs hides the username on small devices so only the image appears. -->
+                                <strong> @Session["usuariologado"].ToString()</strong>
+                                <strong>@Html.ActionLink("Logoff", "Login", "Home", new object { }, new { @class = "text-danger" })</strong>
                             </span>
                         }
                         else
                         {
+                            <img id="foto-user" src="~/Content/img/user.jpg" class="user-image" alt="User Image">
                             <span>
-                                <img src="~/Content/img/user.jpg" class="user-image" alt="User Image">
                                 user.com
                             </span>
                         }
-                    </a>
-                </li>
-
-                @* END User Account Menu *@
-                @* BEGIN Control Sidebar Toggle Button *@
-                <li>
-                </li>
-                @* END Control Sidebar Toggle Button *@
-            </ul>
-        </div>
-    </nav>
+                    </li>
+                </ul>
+            </div>
+        </nav>
 </header>
 
 
