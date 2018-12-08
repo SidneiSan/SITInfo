@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyFactory.SITInfo.Models.Permissoes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -7,6 +8,7 @@ using WatsonLib;
 
 namespace MyFactory.SITInfo.Controllers
 {
+    [AutorizacaoFilter]
     public class ChatBotController : Controller
     {
         private AssistantServiceExample watson;

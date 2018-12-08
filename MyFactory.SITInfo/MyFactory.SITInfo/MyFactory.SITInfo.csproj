@@ -422,6 +422,7 @@
     <Content Include="Views\Chamados\Edit.cshtml" />
     <Content Include="Views\Chamados\Index.cshtml" />
     <Content Include="Views\ChatBot\Index.cshtml" />
+    <Content Include="Views\Usuarios\_Message.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -61,6 +61,7 @@ namespace WatsonLib
 
         public string CallAssistant(string pergunta)
         {
+            string resposta = "";
             MessageRequest messageRequest = new MessageRequest()
             {
                 Input = new MessageInput()
@@ -69,19 +70,29 @@ namespace WatsonLib
                 }
             };
 
-            var result = _assistant.Message(_assistantId, _sessionId, messageRequest);
-            string resposta = result.Output.Generic[0].Text;
-
-            if (pergunta.Length > 1)
+            
+            try
             {
-                // CallAssistant(pergunta);
+                var result = _assistant.Message(_assistantId, _sessionId, messageRequest);
+
+                resposta = result.Output.Generic[0].Text;
+
+                if (pergunta.Length > 1)
+                {
+                    // CallAssistant(pergunta);
+                }
+                else
+                {
+                    _assistant.DeleteSession(_assistantId, _sessionId);
+
+                }
+
             }
-            else
+            catch (System.Exception)
             {
-                _assistant.DeleteSession(_assistantId, _sessionId);
 
+                resposta = "Desculpe ainda não tenho resposta para este questionamento, pode refaze-la?";
             }
-
             return resposta;
         }
     }

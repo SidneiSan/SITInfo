@@ -1,18 +1,16 @@
-﻿@model MyFactory.SITInfo.Models.Usuario
-
+﻿@model MyFactory.SITInfo.Models.ViewModels.UsuarioViewModel
 @{
     ViewBag.Title = "Incluir Usuários";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-<div class="form-horizontal">
 
-    <hr />
+    <div class="form-horizontal">
+    
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
         @Html.LabelFor(model => model.Nome, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -41,10 +39,8 @@
     <div class="form-group">
         @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            <div class="checkbox">
-                @Html.TextBoxFor(model => model.Ativo)
-                @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
-            </div>
+            @Html.CheckBoxFor(model => model.Ativo, new { name = "Ativo", @class = "", @checked = "checked" })
+            @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
         </div>
     </div>
 
@@ -63,7 +59,10 @@
         </div>
     </div>
 
-</div>
+    </div>
+
+
+
 }
 
 

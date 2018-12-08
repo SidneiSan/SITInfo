@@ -14,7 +14,7 @@
         border: 2px solid #dedede;
         background-color: #f1f1f1;
         width: 95%;
-        height: 70px;
+        height: 15%;
         border-radius: 5px;
         padding: 10px;
         margin: 10px 0;
@@ -119,19 +119,20 @@
 
     $("#botaoclick").click(function()
 {
-   var pergunta = $("#texto").val();
-        if (pergunta == "") {
-            alert("Ops! falta sua mensasgem...");
-        } else {
-            addChildUser(pergunta);
-        }
-        //console.log("pergunta->" + pergunta);
+        var pergunta = $("#texto").val();
+
+    if (pergunta == "") {
+        alert("Ops! falta sua mensasgem...");
+    } else {
+        addChildUser(pergunta);
+    }
+        console.log("pergunta->" + pergunta);
    $.ajax({
        type: "POST",
        url: '@Url.Action("FalaWatson")',
        data: {pergunta: pergunta },
        success: function (resposta) {
-           //console.log("resposta->" + resposta);
+           console.log("resposta->" + resposta);
 
            addChildRobo(resposta);
            auto_scrool();

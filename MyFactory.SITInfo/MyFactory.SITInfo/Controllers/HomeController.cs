@@ -10,10 +10,10 @@ using System.Web.Mvc;
 
 namespace MyFactory.SITInfo.Controllers
 {
-    
+    [AutorizacaoFilter]
     public class HomeController : Controller
     {
-        
+
         private SITDbContext db = new SITDbContext();
 
         

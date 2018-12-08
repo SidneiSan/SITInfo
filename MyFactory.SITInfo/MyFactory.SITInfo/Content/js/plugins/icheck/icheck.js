@@ -126,8 +126,9 @@
             margin: 0,
             padding: 0,
             background: '#fff',
+            background: '#fff',
             border: 0,
-            opacity: 0
+            opacity: 10
           },
 
           // Choose how to hide input
@@ -136,7 +137,7 @@
             visibility: 'hidden'
           } : area ? layer : {
             position: 'absolute',
-            opacity: 0
+            opacity: 10
           },
 
           // Get proper class

@@ -1,0 +1,41 @@
+﻿@model MyFactory.SITInfo.Models.Usuario
+<div class="modal-body">
+    <div class="alert alert-warning">
+        <span class="glyphicon glyphicon-warning-sign"></span>
+        Confirma a exclusão do Usuário?
+        <br />
+        <strong>Nome</strong>
+        <br />
+        @Model.Nome
+        <strong>Email</strong>
+        <br />
+        @Model.Email
+        <strong>Tipo da Conta</strong>
+        <br />
+        @Model.TipoConta
+    </div>
+
+    @using (Html.BeginForm("Delete", "Usuarios", new { id = Model.Id }, FormMethod.Post, null))
+    {
+        <div class="row">
+            &nbsp;
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-md-offset-4">
+                <button type="button" id="cancel-btn" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+                <button type="submit" id="approve-btn" class="btn btn-danger">Confirmar</button>
+            </div>
+        </div>
+    }
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $('#approve-btn').click(function () {
+            $('#modal-container').modal('hide');
+            $('#cancel-btn').click();
+        });
+    });
+</script>
+

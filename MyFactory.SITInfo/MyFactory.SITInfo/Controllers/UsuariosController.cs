@@ -101,6 +101,13 @@ namespace MyFactory.SITInfo.Controllers
             return View(usuario);
         }
 
+        public ActionResult ConfirmDelete(int id)
+        {
+            Usuario usuario = db.Usuarios.Find(id);
+            //AnuncioViewModel model = Mapper.Map<Anuncio, AnuncioViewModel>(entity);
+            return PartialView("_Message", usuario);
+        }
+
 
         // GET: Usuarios/Delete/5
         public ActionResult Delete(int? id)

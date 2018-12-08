@@ -8,13 +8,15 @@ using System.Web;
 using System.Web.Mvc;
 using MyFactory.SITInfo.DbContexto;
 using MyFactory.SITInfo.Models;
+using MyFactory.SITInfo.Models.Permissoes;
 
 namespace MyFactory.SITInfo.Controllers
 {
+    [AutorizacaoFilter]
     public class ChamadosController : Controller
     {
         private SITDbContext db = new SITDbContext();
-
+       
         // GET: Chamados
         public ActionResult Index()
         {
