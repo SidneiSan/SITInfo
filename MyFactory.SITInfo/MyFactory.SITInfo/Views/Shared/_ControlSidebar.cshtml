@@ -10,3 +10,50 @@
 @* Add the sidebar's background. This div must be placed immediately after the control sidebar *@
 <div class="control-sidebar-bg"></div>
 
+<script src="/Content/js/plugins/jquery/jquery-2.2.4.js"></script>
+<script src="/Content/css/bootstrap-datepicker3.min.css"></script>
+<script src="/Content/js/plugins/datepicker/bootstrap-datepicker.js"></script>
+
+<script language="javascript" type="text/javascript">
+    $.fn.datepicker.defaults.format = "dd/mm/yyyy";
+    $(document).ready(function () {
+        var date = new Date();
+        var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        //var today = (date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear());
+        var end = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+        console.log(date.getMonth());
+        console.log(date.getFullYear());
+        console.log(date.getDate() + '/' + date.getMonth() + '/' + date.getFullYear());
+        $('#datetimepicker').datepicker({
+            format: "dd/mm/yyyy",
+            todayHighlight: true,
+            startDate: today,
+            autoclose: true,
+            showTodayButton: true,
+            showClose: true,
+            showClear: true,
+            stepping: 15
+        }).on('hide', function () {
+            $(this).focus();
+        });
+
+        $('#datetimepicker2').datepicker({
+            format: "dd/mm/yyyy",
+            todayHighlight: true,
+            startDate: today,
+            autoclose: true,
+            showTodayButton: true,
+            showClose: true,
+            showClear: true,
+            stepping: 15
+        }).on('hide', function () {
+            $(this).focus();
+        });
+
+        $('#datetimepicker').datepicker('setDate', today);
+        $('#datetimepicker2').datepicker('setDate', today);
+
+    });
+</script>
+
+

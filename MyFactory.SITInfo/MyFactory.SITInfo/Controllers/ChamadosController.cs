@@ -49,8 +49,9 @@ namespace MyFactory.SITInfo.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,EmailUsuario,DataAbertura,Prioridade,Titulo,Descricao,DataFechamento")] Chamado chamado)
+        public ActionResult Create([Bind(Include = "id,EmailUsuario,DataAbertura,Prioridade,Titulo,Descricao")] Chamado chamado)
         {
+           // chamado.DataFechamento = null;
             if (ModelState.IsValid)
             {
                 db.Chamados.Add(chamado);
@@ -106,6 +107,13 @@ namespace MyFactory.SITInfo.Controllers
             }
             return View(chamado);
         }
+
+        public ActionResult ConfirmDelete(int id)
+        {
+            Chamado chamado = db.Chamados.Find(id);
+            return PartialView("_Message", chamado);
+        }
+
 
         // POST: Chamados/Delete/5
         [HttpPost, ActionName("Delete")]

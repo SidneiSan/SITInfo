@@ -1,6 +1,6 @@
-﻿@model MyFactory.SITInfo.Models.Usuario
-@{
-    ViewBag.Title = "Exclusão de Usuários";
+﻿@model MyFactory.SITInfo.Models.Chamado
+    @{ 
+    ViewBag.Title = "Exclusão de Chamados";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -10,16 +10,16 @@
 
         <br />
         <div id="div_nome" class="hidden">
-            <p id="textoNome">Nome: @Model.Nome</p>
+            <p id="textoNome">Nome: @Model.DataAbertura</p>
 
 
-            <p id="textoEmail">Email: @Model.Email</p>
+            <p id="textoEmail">Email: @Model.EmailUsuario</p>
 
 
-            <p id="textoConta">Tipo da Conta:@Model.TipoConta</p>
+            <p id="textoConta">Tipo da Conta:@Model.Titulo</p>
         </div>
 
-        @using (Html.BeginForm("Delete", "Usuarios", new { id = Model.Id }, FormMethod.Post, null))
+        @using (Html.BeginForm("Delete", "Chamados", new { id = Model.id }, FormMethod.Post, null))
         {
             @Html.AntiForgeryToken()
             <div class="row">
@@ -42,7 +42,7 @@
             var nome = $("#textoNome").val();
             console.log("Nome =>" + nome);
             bootbox.confirm({
-                title: "Confirma a exclusão deste Usuário ?",
+                title: "Confirma a exclusão deste Chamado ?",
                 message: document.getElementById("textoNome").innerHTML + '<br/>' + document.getElementById("textoEmail").innerHTML + '<br/>' + document.getElementById("textoConta").innerHTML,
                 buttons: {
                     confirm: {
@@ -68,8 +68,8 @@
                         //    type: "POST"
                         //});
                         //console.log("naooooooooooooo!!");
-                    }                        
-                        
+                    }
+
 
 
                 }
@@ -80,4 +80,5 @@
 
 
     </div>
+
 

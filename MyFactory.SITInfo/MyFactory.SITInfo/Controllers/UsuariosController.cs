@@ -58,6 +58,9 @@ namespace MyFactory.SITInfo.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id,Nome,Email,Senha,Ativo,TipoConta")] Usuario usuario)
         {
+            if (usuario.TipoConta == 0) { usuario.TipoConta = UserTipo.Usuario; };
+                
+
             if (ModelState.IsValid)
             {
                 db.Usuarios.Add(usuario);

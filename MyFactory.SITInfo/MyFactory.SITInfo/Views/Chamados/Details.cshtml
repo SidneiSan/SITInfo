@@ -1,67 +1,79 @@
 ﻿@model MyFactory.SITInfo.Models.Chamado
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Chamados";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Details</h2>
+<h2>Detalhes</h2>
+<style>
+    textarea {
+        overflow: auto;
+        width: 100%;
+        height: 100%;
+    }
 
-<div>
-    <h4>Chamado</h4>
+    DataAbertura {
+        margin-left: 15px;
+    }
+</style>
+<div class="form-horizontal">
     <hr />
-    <dl class="dl-horizontal">
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataAbertura, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="form-control">
-            <dt>
-                @Html.DisplayNameFor(model => model.EmailUsuario)
-            </dt>
-            <dd>
-                @Html.DisplayFor(model => model.EmailUsuario)
-            </dd>
+            @Html.DisplayFor(model => model.DataAbertura)
         </div>
-            <dt>
-                @Html.DisplayNameFor(model => model.DataAbertura)
-            </dt>
+    </div>
 
-            <dd>
-                @Html.DisplayFor(model => model.DataAbertura)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Prioridade)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Prioridade)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Titulo)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Titulo)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.Descricao)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.Descricao)
-            </dd>
-
-            <dt>
-                @Html.DisplayNameFor(model => model.DataFechamento)
-            </dt>
-
-            <dd>
-                @Html.DisplayFor(model => model.DataFechamento)
-            </dd>
+    <div class="form-group">
+        @Html.LabelFor(model => model.EmailUsuario, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-control">
+            @Html.DisplayFor(model => model.EmailUsuario)
         </div>
-    </dl>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Prioridade, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-control">
+            @Html.DisplayFor(model => model.Prioridade)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Titulo, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-control">
+            @Html.DisplayFor(model => model.Titulo)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataFechamento, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-control">
+            @Html.DisplayFor(model => model.DataFechamento)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Descricao, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextAreaFor(model => model.Descricao)
+        </div>
+    </div>
+
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            @Html.ActionLink("Editar", "Edit", new { id = Model.id }, new { @class = "btn btn-primary " })&nbsp;&nbsp;&nbsp;&nbsp;
+            @Html.ActionLink("Voltar", "Index", null, new { @class = "btn btn-warning " })
+        </div>
+    </div>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+
+

@@ -44,19 +44,24 @@ namespace MyFactory.SITInfo.Controllers
         /// <param name="returnUrl"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult ValidaUser([Bind(Include = "Email, Senha")] UsuarioViewModel model, string returnUrl)
+        public ActionResult ValidaUser([Bind(Include = "Email, Senha, Ativo")] UsuarioViewModel model, string returnUrl)
         {
             if (!ModelState.IsValidField(model.Email) && !ModelState.IsValidField(model.Senha))
             {
                 return View(model);
             }
 
-
             Usuario usuario = db.Usuarios.FirstOrDefault(u => u.Email == model.Email && u.Senha == model.Senha);
             if (usuario == null)
             {
                 ModelState.AddModelError("erro_login", "Usuário não foi localizado! ou Senha incorreta!");
                 return View("Login",model);
+
+            }
+            else if (!usuario.Ativo)
+            {
+                ModelState.AddModelError("erro_login", "Usuário não esta Ativo no Sistema!");
+                return View("Login", model);
             }
 
           
@@ -72,6 +77,10 @@ namespace MyFactory.SITInfo.Controllers
             return View();
         }
 
+        public ActionResult Graficos()
+        {
+            return View();
+        }
 
         public ActionResult Contact()
         {
